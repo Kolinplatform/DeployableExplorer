@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@MillacuraFA" />
+    <meta
+      name="twitter:description"
+      content="This explorer is connected directly to the Waves blockchain and retrieves all transactions
+      performed with the Token, allowing to search and sort transactions"
+    />
+    <meta name="twitter:image" content="../img/Kolin_explorer.png" />
+    <title>Table Live Search</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="shortcut icon" type="image/ico" href="../img/favicon.ico" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="js/sorttable.js"></script>
+
+    <style>
+      table.sortable tbody {
+        counter-reset: sortabletablescope;
+      }
+      table.sortable thead tr::before {
+        content: "";
+        display: table-cell;
+      }
+      table.sortable tbody tr::before {
+        content: counter(sortabletablescope);
+        counter-increment: sortabletablescope;
+        display: table-cell;
+      }
+      table.sortable tbody tr:nth-child(2n) td {
+        background: #fff;
+      }
+      table.sortable tbody tr:nth-child(2n + 1) td {
+        background: #fff;
+      }
+      table.sortable tbody tr {
+        padding: 0.9rem;
+        vertical-align: top;
+        border-top: 2px solid #dee2e6;
+      }
+      table.sortable thead {
+        padding: 0.9rem;
+        vertical-align: top;
+        border-top: 2px solid #dee2e6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row col-lg-12 mx-autmt-2"><input class="row col-8 mt-2" placeholder="Type assetID to personalize" id="assetIdToSubmit" type="text" value="FiKspxSpkpzT4pMUA9ccZkbJmVXTdu4JhFDXNNXr5noW"></input>
+        <button class="btn row col-4 mt-2 btn-info" id="buttonSubmit">Update</button>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 col-lg-8">
+          <h1 class="display-4">
+            <span class="tokenName">Personalized </span><span id="containerTypeExplorer">explorer</span><span id="containerTypeWhitelist" style="display: none">whitelist</span>
+          </h1>
+        </div>
+        <div class="col-12 col-lg-4 text-muted">
+          <p class="lead float-right">
+            made with <i class="fa fa-heart text-info" aria-hidden="true"></i> by
+            <a class="text-info" href="https://kolinplatform.com"
+              >Kolin Platform</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container mt-5">
+      <div class="row mt-5">
+        <div class="col-12 col-lg-6">
+          <div id="total"></div>
+          <div id="totalsupply"></div>
+          <div>&nbsp;</div>
+          <a id="clickWhitelist"
+            >See <span class="tokenName">Personalized</span> whitelist
+            <i class="fa fa-pie-chart text-info"></i
+          ></a>
+          <a id="clickExplorer" style="display: none"
+              >See <span class="tokenName">Personalized</span> explorer
+              <i class="fa fa-search text-info"></i
+            ></a>
+          <div>&nbsp;</div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div>
+            <b>Foundational wallet:</b>
+            <span id="walletName"></span>
+          </div>
+        </div>
+        <strong>Click headers to sort table.</strong>
+      </div>
+<!--Starts Explorer section-->
+      <div class="row mt-4" id="containerExplorer">
+        <div class="col">
+          <table class="table sortable" id="myTable">
+            <thead>
+              <tr>
+                <!--When a header is clicked, run the sortTable function, with a parameter,
+0 for sorting by address, or 1 for sorting by balance: -->
+                <th onClick="" style="cursor: pointer">Timestamp</th>
+                <th onClick="" style="cursor: pointer">Height</th>
+                <th onClick="" style="cursor: pointer">Type</th>
+                <th onClick="" style="cursor: pointer">Sender</th>
+                <th onClick="" style="cursor: pointer">Receiver</th>
+                <th
+                  onClick=""
+                  style="cursor: pointer"
+                  class="sorttable_numeric"
+                >
+                  Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody id="explorer"></tbody>
+          </table>
+        </div>
+      </div>
+    
+    <!--Ends Explorer section-->
+    <!--Start Whitelist section-->
+    
+        <div class="row mt-4" id="containerWhitelist" style="display: none">
+          <div class="col">
+            <table class="table sortable" id="myTable">
+              <thead>
+                <tr>
+                  <!--When a header is clicked, run the sortTable function, with a parameter,
+  0 for sorting by address, or 1 for sorting by balance: -->
+                  <th onClick="" style="cursor: pointer">Address</th>
+                  <th
+                    onClick=""
+                    style="cursor: pointer"
+                    class="sorttable_numeric"
+                    id="thBalance"
+                  >
+                    Balance
+                  </th>
+                  <th
+                    onClick=""
+                    style="cursor: pointer"
+                    class="sorttable_numeric"
+                    id="thsupply"
+                  >
+                    % Supply
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="whitelist"></tbody>
+            </table>
+          </div>
+        </div>
+      
+ <!--Ends Whitelist section-->
+</div>
+    <script src="js/index.js"></script>
+  </body>
+</html>
